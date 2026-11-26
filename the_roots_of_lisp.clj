@@ -170,9 +170,9 @@
 (pair '() '(x y z))
 
 (defn assoc [x y]
-  (cond ((null? y) nil)
+  (cond ((null y) nil)
         ((eq x (caar y)) (cadar y))
-        ('t (assoc* x (cdr y)))))
+        ('t (assoc x (cdr y)))))
 
 (assoc 'x '((x a) (y b)))
 (assoc 'x '((x a') (x a) (y b)))
@@ -209,8 +209,7 @@
                    a)))))
 
 (defn evcon [c a]
-  (cond ((eval (c
-                aar c) a)
+  (cond ((eval (caar c) a)
          (eval (cadar c) a))
         ('t (evcon (cdr c) a))))
 
